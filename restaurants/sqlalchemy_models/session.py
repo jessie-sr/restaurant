@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from models import Restaurant, Base
 from base import engine
 
+Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
@@ -20,7 +21,8 @@ for item in data:
         location=item['location'],
         cuisine=item['cuisine'],
         rating=item['rating'],
-        contact=item['contact'],
+        phone=item['contact']['phone'],
+        email=item['contact']['email'],
     )
     session.add(restaurant)
 

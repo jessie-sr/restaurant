@@ -1,6 +1,7 @@
+# Definition of the Django ORM models.
+
 from django.db import models
 
-# Definition of the models.
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
