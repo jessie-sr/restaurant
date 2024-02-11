@@ -4,10 +4,10 @@ from .models import Restaurant
 
 class RestaurantListView(ListView):
     model = Restaurant
-    template_name = 'restaurants/list.html'  # Path to your template
+    template_name = 'restaurants/list.html'
     context_object_name = 'restaurants'
 
 class RestaurantDetailView(DetailView):
     model = Restaurant
-    template_name = 'restaurants/detail.html'  # Path to your detail template
+    template_name = 'restaurants/detail.html'
     context_object_name = 'restaurant'
