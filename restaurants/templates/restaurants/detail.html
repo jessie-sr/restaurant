@@ -8,4 +8,5 @@
   <p>Rating: {{ restaurant.rating }}</p>
   <p>Phone: {{ restaurant.phone }}</p>
   <p>Email: {{ restaurant.email }}</p>
+  <a href="{% url 'restaurant-delete' restaurant.id %}">Delete Restaurant</a>
 {% endblock %}
