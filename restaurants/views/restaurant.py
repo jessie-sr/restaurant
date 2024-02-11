@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from django.urls import reverse_lazy
 from ..models import Restaurant
 from ..forms import RestaurantForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class RestaurantListView(ListView):
     model = Restaurant
@@ -33,19 +34,19 @@ class RestaurantDetailView(DetailView):
     template_name = 'restaurant/detail.html'
     context_object_name = 'restaurant'
 
-class RestaurantCreateView(CreateView):
+class RestaurantCreateView(LoginRequiredMixin, CreateView):
     model = Restaurant
     form_class = RestaurantForm
     template_name = 'restaurant/add.html'
     success_url = reverse_lazy('restaurant-list')  # Redirect to the restaurant list after creation
 
-class RestaurantDeleteView(DeleteView):
+class RestaurantDeleteView(LoginRequiredMixin, DeleteView):
     model = Restaurant
     template_name = 'restaurant/delete.html'
     success_url = reverse_lazy('restaurant-list')  # Redirect to the restaurant list after deletion
     context_object_name = 'restaurant'
 
-class RestaurantUpdateView(UpdateView):
+class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
     model = Restaurant
     form_class = RestaurantForm
     template_name = 'restaurant/update.html'

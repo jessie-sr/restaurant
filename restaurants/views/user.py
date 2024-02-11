@@ -5,4 +5,4 @@ from ..forms import SignUpForm
 class SignUpView(CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy('login')  # Redirect to the login page after successful signup
-    template_name = 'user/signup.html'
+    template_name = 'registration/signup.html'
