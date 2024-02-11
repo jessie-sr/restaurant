@@ -18,6 +18,15 @@
                     <a class="nav-link" href="{% url 'restaurant-list' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- Add more navigation items here -->
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            
             </ul>
         </div>
     </nav>

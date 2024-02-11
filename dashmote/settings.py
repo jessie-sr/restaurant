@@ -131,3 +131,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Login
 LOGIN_REDIRECT_URL = '/api/restaurants/'
 LOGIN_URL = 'login'
+
+LOGOUT_REDIRECT_URL = '/api/restaurants/'
