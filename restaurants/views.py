@@ -8,6 +8,26 @@ class RestaurantListView(ListView):
     template_name = 'restaurants/list.html'
     context_object_name = 'restaurants'
 
+    # Filter the queryset based on the location and cuisine
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        location = self.request.GET.get('location')
+        cuisine = self.request.GET.get('cuisine')
+
+        if location:
+            queryset = queryset.filter(location__icontains=location)
+        if cuisine:
+            queryset = queryset.filter(cuisine__icontains=cuisine)
+
+        return queryset
+
+    #  Add these lists to the context so they can be accessed in the template
+    def get_context_data(self, **kwargs):
+        context = super(RestaurantListView, self).get_context_data(**kwargs)
+        context['locations'] = Restaurant.objects.order_by('location').values_list('location', flat=True).distinct()
+        context['cuisines'] = Restaurant.objects.order_by('cuisine').values_list('cuisine', flat=True).distinct()
+        return context
+
 class RestaurantDetailView(DetailView):
     model = Restaurant
     template_name = 'restaurants/detail.html'
