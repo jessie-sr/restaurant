@@ -1,11 +1,11 @@
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from .models import Restaurant
-from .forms import RestaurantForm
+from ..models import Restaurant
+from ..forms import RestaurantForm
 
 class RestaurantListView(ListView):
     model = Restaurant
-    template_name = 'restaurants/list.html'
+    template_name = 'restaurant/list.html'
     context_object_name = 'restaurants'
 
     # Filter the queryset based on the location and cuisine
@@ -30,23 +30,23 @@ class RestaurantListView(ListView):
 
 class RestaurantDetailView(DetailView):
     model = Restaurant
-    template_name = 'restaurants/detail.html'
+    template_name = 'restaurant/detail.html'
     context_object_name = 'restaurant'
 
 class RestaurantCreateView(CreateView):
     model = Restaurant
     form_class = RestaurantForm
-    template_name = 'restaurants/add.html'
+    template_name = 'restaurant/add.html'
     success_url = reverse_lazy('restaurant-list')  # Redirect to the restaurant list after creation
 
 class RestaurantDeleteView(DeleteView):
     model = Restaurant
-    template_name = 'restaurants/delete.html'
+    template_name = 'restaurant/delete.html'
     success_url = reverse_lazy('restaurant-list')  # Redirect to the restaurant list after deletion
     context_object_name = 'restaurant'
 
 class RestaurantUpdateView(UpdateView):
     model = Restaurant
     form_class = RestaurantForm
-    template_name = 'restaurants/update.html'
+    template_name = 'restaurant/update.html'
     success_url = reverse_lazy('restaurant-list')

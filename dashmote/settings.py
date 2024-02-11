@@ -56,7 +56,7 @@ ROOT_URLCONF = 'dashmote.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.parent /'dashmote'/ 'restaurants' / 'templates'/ 'restaurants'],
+        'DIRS': [BASE_DIR.parent /'dashmote'/ 'restaurants' / 'templates'/ 'restaurant'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
