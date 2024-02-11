@@ -8,6 +8,7 @@ class RestaurantListView(ListView):
     model = Restaurant
     template_name = 'restaurant/list.html'
     context_object_name = 'restaurants'
+    paginate_by = 10  # The number of restaurants listed per page
 
     # Filter the queryset based on the location and cuisine
     def get_queryset(self):
