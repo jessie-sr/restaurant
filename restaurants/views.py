@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.views.generic import DetailView
-from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from .models import Restaurant
 from .forms import RestaurantForm
 
@@ -14,12 +15,8 @@ class RestaurantDetailView(DetailView):
     template_name = 'restaurants/detail.html'
     context_object_name = 'restaurant'
 
-def add_restaurant(request):
-    if request.method == 'POST':
-        form = RestaurantForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('restaurants:list')
-    else:
-        form = RestaurantForm()
-    return render(request, 'restaurants/add.html', {'form': form})
+class RestaurantCreateView(CreateView):
+    model = Restaurant
+    form_class = RestaurantForm
+    template_name = 'restaurants/add.html'
+    success_url = reverse_lazy('restaurant-list')
