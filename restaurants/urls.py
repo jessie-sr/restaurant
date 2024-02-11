@@ -1,11 +1,7 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import RestaurantViewSet
-
-# Set up app-level URL configuration.
-router = DefaultRouter()
-router.register(r'restaurants', RestaurantViewSet)
+from django.urls import path
+from .views import RestaurantListView, RestaurantDetailView
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('restaurants/', RestaurantListView.as_view(), name='restaurant-list'),
+    path('restaurants/<int:pk>/', RestaurantDetailView.as_view(), name='restaurant-detail'),
 ]
