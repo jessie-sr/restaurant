@@ -8,6 +8,6 @@
   <form method="post">
     {% csrf_token %}
     <input type="submit" value="Confirm">
-    <a href="{{ restaurant.get_absolute_url }}">Cancel</a>
+    <a href="{% url 'restaurant-detail' restaurant.id %}">Cancel</a>
   </form>
 {% endblock %}
