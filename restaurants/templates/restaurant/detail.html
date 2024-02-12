@@ -2,12 +2,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{ restaurant.name }}</h1>
-  <p>Location: {{ restaurant.location }}</p>
-  <p>Cuisine: {{ restaurant.cuisine }}</p>
-  <p>Rating: {{ restaurant.rating }}</p>
-  <p>Phone: {{ restaurant.phone }}</p>
-  <p>Email: {{ restaurant.email }}</p>
-  <a href="{% url 'restaurant-update' pk=restaurant.pk %}">Edit</a>
-  <a href="{% url 'restaurant-delete' restaurant.id %}">Delete</a>
+  <h1 class="mb-3">{{ restaurant.name }}</h1>
+  <li class="my-2">Location: {{ restaurant.location }}</li>
+  <li class="my-2">Cuisine: {{ restaurant.cuisine }}</li>
+  <li class="my-2">Rating: {{ restaurant.rating }}</li>
+  <li class="my-2">Phone: {{ restaurant.phone }}</li>
+  <li class="my-2">Email: {{ restaurant.email }}</li>
+  <a href="{% url 'restaurant-list' %}" class="btn btn-secondary mt-3">Return</a>
+  <a href="{% url 'restaurant-update' pk=restaurant.pk %}" class="btn btn-light mt-3 ml-4">Edit</a>
+  <a href="{% url 'restaurant-delete' restaurant.id %}" class="btn btn-danger mt-3 ml-4">Delete</a>
 {% endblock %}
