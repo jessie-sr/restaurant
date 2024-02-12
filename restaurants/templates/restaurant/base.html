@@ -5,33 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Django Project{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background: #ffffff;
+      }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">My Project</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+        <a class="navbar-brand" href="#">Restaurant IS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'restaurant-list' %}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link mr-4" href="{% url 'restaurant-list' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- Add more navigation items here -->
                 {% if user.is_authenticated %}
-                    <form action="{% url 'logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post" class="form-inline">
+                            {% csrf_token %}
+                            <button class="btn btn-dark" type="submit">Logout</button>
+                        </form>
+                    </li>
                 {% else %}
-                    <a href="{% url 'login' %}">Login</a>
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="btn btn-dark">Login</a>
+                    </li>
                 {% endif %}
-            
             </ul>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container mt-4">
         {% block content %}
         {% endblock %}
     </div>
