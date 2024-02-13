@@ -34,7 +34,9 @@
   <ul>
     {% for restaurant in restaurants %}
       <li class="my-2">
-        <a href="{% url 'restaurant-detail' restaurant.id %}">{{ restaurant.name }}</a>
+        <a class="icon-link icon-link-hover" href="{% url 'restaurant-detail' restaurant.id %}">
+          {{ restaurant.name }}
+        </a>
       </li>
     {% endfor %} 
   </ul>
