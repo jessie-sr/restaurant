@@ -1,36 +1,35 @@
-<!-- restaurants/templates/restaurants/list.html -->
 {% extends "base.html" %}
 
 {% block content %}
   <h1>Restaurants</h1>
   
-  <form method="get" class="form-inline">
-    <div class="form-group mt-2 mb-3">
-        <label for="location" class="sr-only">Location:</label>
-        <select name="location" id="location" class="form-control">
-            <option value="">All Locations</option>
-            {% for location in locations %}
-            <option value="{{ location }}" {% if request.GET.location == location %}selected{% endif %}>{{ location }}</option>
-            {% endfor %}
-        </select>
-    </div>
+  <div class="d-flex flex-wrap justify-content-between align-items-end">
+    <form method="get" class="form-inline">
+      <div class="form-group mt-2 mb-3">
+          <label for="location" class="sr-only">Location:</label>
+          <select name="location" id="location" class="form-control">
+              <option value="">All Locations</option>
+              {% for location in locations %}
+              <option value="{{ location }}" {% if request.GET.location == location %}selected{% endif %}>{{ location }}</option>
+              {% endfor %}
+          </select>
+      </div>
 
-    <div class="form-group mx-sm-3 mt-2 mb-3">
-        <label for="cuisine" class="sr-only">Cuisine:</label>
-        <select name="cuisine" id="cuisine" class="form-control">
-            <option value="">All Cuisines</option>
-            {% for cuisine in cuisines %}
-            <option value="{{ cuisine }}" {% if request.GET.cuisine == cuisine %}selected{% endif %}>{{ cuisine }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    
-    <button class="btn btn-light mt-2 mb-3" type="submit">Filter</button>
+      <div class="form-group mx-sm-3 mt-2 mb-3">
+          <label for="cuisine" class="sr-only">Cuisine:</label>
+          <select name="cuisine" id="cuisine" class="form-control">
+              <option value="">All Cuisines</option>
+              {% for cuisine in cuisines %}
+              <option value="{{ cuisine }}" {% if request.GET.cuisine == cuisine %}selected{% endif %}>{{ cuisine }}</option>
+              {% endfor %}
+          </select>
+      </div>
+      
+      <button class="btn btn-light mt-2 mb-3" type="submit">Filter</button>
+    </form>
 
-    <a href="{% url 'add_restaurant' %}" class="btn btn-light mt-2 mb-3 ml-3">+ Add</a>
-    
-  </form>
-
+    <a href="{% url 'add_restaurant' %}" class="btn btn-light mt-2 mb-3">+ Add</a>
+  </div>
 
   <ul>
     {% for restaurant in restaurants %}

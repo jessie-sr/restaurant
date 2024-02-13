@@ -31,12 +31,12 @@
                     <li class="nav-item">
                         <form action="{% url 'logout' %}" method="post" class="form-inline">
                             {% csrf_token %}
-                            <button class="btn btn-dark" type="submit">Logout</button>
+                            <button class="btn btn-secondary" type="submit">Logout</button>
                         </form>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a href="{% url 'login' %}" class="btn btn-dark">Login</a>
+                        <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
                     </li>
                 {% endif %}
             </ul>

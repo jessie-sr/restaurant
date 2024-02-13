@@ -2,9 +2,29 @@
 
 {% block content %}
 <h2>Add a New Restaurant</h2>
-<form method="post">
+<form method="post" class="form-group my-3">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+    {% for field in form %}
+        <div class="form-group">
+            <div class="row mb-2">
+                <label for="{{ field.id_for_label }}" class="col-sm-1 col-form-label">{{ field.label }}</label>
+            <div class="col-sm-10">
+                <label for="{{ field.id_for_label }}" class="col-sm-1 col-form-label">
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </label>
+            </div>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-dark mt-3">Submit</button>
+    <a href="{% url 'restaurant-list' %}" class="btn btn-light ml-4 mt-3">Cancel</a>
 </form>
 {% endblock %}
+
