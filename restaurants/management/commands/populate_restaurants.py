@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from restaurants import Restaurant  # adjust "your_app" and "Restaurant" to fit your project
+from models import Restaurant  # adjust "your_app" and "Restaurant" to fit your project
 import json
 
 class Command(BaseCommand):
