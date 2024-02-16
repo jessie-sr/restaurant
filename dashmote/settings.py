@@ -77,18 +77,23 @@ WSGI_APPLICATION = 'dashmote.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'restaurant_dev_db',
-        'USER': 'jessiesun',
-        'PASSWORD': 'Sr6208H%llo1019',
-        'HOST': 'localhost',  # e.g., 'localhost' or an IP address
-        'PORT': '5432',  # default PostgreSQL port is 5432
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'restaurant_dev_db',
+#         'USER': 'jessiesun',
+#         'PASSWORD': 'Sr6208H%llo1019',
+#         'HOST': 'localhost',  # e.g., 'localhost' or an IP address
+#         'PORT': '5432',  # default PostgreSQL port is 5432
+#     }
+# }
 
-DATABASE_URI = 'postgresql+psycopg2://jessiesun:Sr6208H%llo1019@localhost/restaurant_dev_db'
+import dj_database_url
+import os
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
