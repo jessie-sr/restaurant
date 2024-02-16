@@ -88,6 +88,7 @@ DATABASES = {
     }
 }
 
+DATABASE_URI = 'postgresql+psycopg2://jessiesun:Sr6208H%llo1019@localhost/restaurant_dev_db'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
