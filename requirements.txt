@@ -10,8 +10,11 @@ cli_helpers==2.3.1
 click==8.1.7
 configobj==5.0.8
 distro==1.9.0
+dj-database-url==2.1.0
 Django==5.0.2
+django-heroku==0.3.1
 djangorestframework==3.14.0
+gunicorn==21.2.0
 h11==0.14.0
 httpcore==1.0.2
 httpx==0.26.0
@@ -61,3 +64,4 @@ typing_extensions==4.9.0
 tzdata==2024.1
 urllib3==2.2.0
 wcwidth==0.2.13
+whitenoise==6.6.0

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l)y!4_)9va@_$9i7x!@%ewyi5kxuwe0+cs12#s8quda*i6#un0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['restaurant-info-system.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dashmote.urls'
@@ -136,3 +137,6 @@ LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/api/restaurants/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+import django_heroku
+django_heroku.settings(locals())
