@@ -2,6 +2,8 @@
 
 The Restaurant Information System is a web application that allows users to interact with a database of restaurants to view, add, filter, and manage restaurant information.
 
+This app is now alive at 'https://restaurant-info-system-6eb2bc1b334c.herokuapp.com/api/restaurants/'! Feel free to check it out ;)
+
 ## Features
 
 The application implements the following user stories:
