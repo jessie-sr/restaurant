@@ -126,3 +126,27 @@ class RestaurantFilterViewTests(TestCase):
         response = self.client.get(reverse('restaurant-list') + '?cuisine=Japanese')
         self.assertEqual(len(response.context['restaurants']), 1)
         self.assertEqual(response.context['restaurants'][0].cuisine, 'Japanese')
+
+# Test Case 7: Secure Interactions with the API (User Authentication)
+class SecureViewTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.client.force_login(self.user)
+
+    def test_secure_view(self):
+        response = self.client.get(reverse('add_restaurant'))
+        self.assertEqual(response.status_code, 200)
+
+# Test Case 8: Pagination
+class RestaurantPaginationViewTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Create more than 10 restaurants to test pagination
+        for restaurant_id in range(15):
+            Restaurant.objects.create(name=f'Restaurant {restaurant_id}', location='Some Location', cuisine='Some Cuisine', rating=4.0)
+
+    def test_pagination_is_ten(self):
+        response = self.client.get(reverse('restaurant-list'))
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertEqual(len(response.context['restaurants']), 10)
