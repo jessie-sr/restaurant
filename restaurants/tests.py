@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from .models import Restaurant
 
+# Test Case 1: Viewing a List of All Restaurants
 class RestaurantListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -21,3 +22,14 @@ class RestaurantListViewTests(TestCase):
     def test_lists_all_restaurants(self):
         response = self.client.get(reverse('restaurant-list'))
         self.assertEqual(len(response.context['restaurants']), 5)
+
+# Test Case 2: Retrieving Detailed Information About a Specific Restaurant
+class RestaurantDetailViewTests(TestCase):
+    def setUp(self):
+        self.restaurant = Restaurant.objects.create(name='Test Restaurant', location='Test Location', cuisine='Test Cuisine', rating=4.0)
+
+    def test_view_detail(self):
+        response = self.client.get(reverse('restaurant-detail', args=[self.restaurant.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.restaurant.name)
+
