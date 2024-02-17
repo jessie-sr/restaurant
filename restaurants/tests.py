@@ -86,3 +86,26 @@ class RestaurantUpdateViewTests(TestCase):
         self.restaurant.refresh_from_db()
         self.assertEqual(self.restaurant.name, 'Updated Restaurant')
 
+# Test Case 5: Deleting a Restaurant
+class RestaurantDeleteViewTests(TestCase):
+    def setUp(self):
+        self.user_password = 'mypassword'
+        self.user = User.objects.create_user('testuser', 'user@example.com', self.user_password)
+        self.restaurant = Restaurant.objects.create(name='Delete Restaurant', location='Delete Location', cuisine='Delete Cuisine', rating=2.5)
+
+    def test_delete_restaurant_without_login(self):
+        """
+        Test that unauthenticated user cannot delete a restaurant and is redirected.
+        """
+        response = self.client.post(reverse('restaurant-delete', args=[self.restaurant.id]))
+        self.assertNotEqual(response.status_code, 200)
+        self.assertTrue(Restaurant.objects.filter(id=self.restaurant.id).exists())
+        
+    def test_delete_restaurant_with_login(self):
+        """
+        Test that an authenticated user can delete a restaurant.
+        """
+        self.client.login(username=self.user.username, password=self.user_password)
+        response = self.client.post(reverse('restaurant-delete', args=[self.restaurant.id]))
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Restaurant.objects.filter(id=self.restaurant.id).exists())
