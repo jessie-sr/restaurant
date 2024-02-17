@@ -1,4 +1,4 @@
-#SQLAlchemy models definition.
+#SQLAlchemy model definition.
 
 from sqlalchemy import create_engine, Column, Integer, String, Float, JSON, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base

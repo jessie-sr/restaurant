@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 class RestaurantListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        # Create test data
         number_of_restaurants = 5
         for restaurant_id in range(number_of_restaurants):
             Restaurant.objects.create(name=f'Restaurant {restaurant_id}', location='Location', cuisine='Cuisine', rating=4.5)
