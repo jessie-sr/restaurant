@@ -109,3 +109,20 @@ class RestaurantDeleteViewTests(TestCase):
         response = self.client.post(reverse('restaurant-delete', args=[self.restaurant.id]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Restaurant.objects.filter(id=self.restaurant.id).exists())
+
+# Test Case 6: Filtering Restaurants Based on Location or Cuisine
+class RestaurantFilterViewTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Restaurant.objects.create(name='Italian in Rome', location='Rome', cuisine='Italian', rating=4.7)
+        Restaurant.objects.create(name='Sushi in Tokyo', location='Tokyo', cuisine='Japanese', rating=4.9)
+
+    def test_filter_by_location(self):
+        response = self.client.get(reverse('restaurant-list') + '?location=Rome')
+        self.assertEqual(len(response.context['restaurants']), 1)
+        self.assertEqual(response.context['restaurants'][0].location, 'Rome')
+
+    def test_filter_by_cuisine(self):
+        response = self.client.get(reverse('restaurant-list') + '?cuisine=Japanese')
+        self.assertEqual(len(response.context['restaurants']), 1)
+        self.assertEqual(response.context['restaurants'][0].cuisine, 'Japanese')
